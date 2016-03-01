@@ -1,0 +1,48 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Settings</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                   <switchableControllerActions>
+                        <TCEforms>
+                            <label>Choose View</label>
+                            <config>
+                                <type>select</type>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Category Archive Menu</numIndex>
+                                        <numIndex index="1">Start->index</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Category Recent Menu</numIndex>
+                                        <numIndex index="1">Start->show</numIndex>
+                                    </numIndex>  
+                                    <numIndex index="2">
+                                        <numIndex index="0">Category Slider Menu</numIndex>
+                                        <numIndex index="1">Start->slider</numIndex>
+                                    </numIndex>  
+                                    <numIndex index="3">
+                                        <numIndex index="0">Category Single Issue Menu</numIndex>
+                                        <numIndex index="1">Start->single</numIndex>
+                                    </numIndex> 
+
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </switchableControllerActions>
+    
+
+
+
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

@@ -1,0 +1,164 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	f:schemaLocation="https://fluidtypo3.org/schemas/fluid-master.xsd" 
+	xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+	flux:schemaLocation="https://fluidtypo3.org/schemas/flux-master.xsd"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	v:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd"
+	>
+</div>
+
+
+<f:layout name="defaultLayout" />
+
+
+<f:section name="content">
+
+	<div class="row">
+		<div class="col-xs-12">
+
+			<f:for each="{recents}" as="recent" iteration="iterator" > 
+
+
+				<f:switch expression="{iterator.cycle}">
+					<f:case value="1">
+
+						<f:if condition="{v:page.info(pageUid: recent.pid, field: 'starttime')} > {f:format.date(date: '' format: 'U')}">
+							<f:then>
+							</f:then>
+							<f:else>
+
+								<div class="text-area">
+
+									<div class="text">
+										<time datetime="{f:format.date(date: recent.starttime, format: '%d.%m.%Y')}">Ausgabe {recent.header}</time>
+										<h1><v:page.link pageUid="{recent.uid}">{recent.title}</v:page.link></h1>
+										<f:format.crop maxCharacters="250">
+											<v:content.render column="1" pageUid="{recent.uid}" />
+										</f:format.crop>
+										<v:page.link pageUid="{recent.uid}">
+											<i class="icon-right"></i> Weiterlesen
+										</v:page.link>
+									</div>
+
+									<div class="img">
+										<v:page.link pageUid="{recent.uid}">
+											<f:image src="fileadmin/{recent.media_url}" width="570c" height="363c-80" crop="{recent.media_url.crop}"/>
+										</v:page.link>
+									</div>
+
+									<ul class="social-networks">
+										<li>
+											<a href="javascript:window.print()"><i class="icon-print"></i> <span>print</span></a>
+										</li>
+										<li>
+											<a href="http://www.facebook.com/share.php?u='{f:uri.page(pageUid: page.pid)}'&title='{v:page.info(pageUid: page.uid, field: 'title')}'" target="_blank"><i class="icon-facebook-squared" ></i> <span>facebook</span>
+										</a>
+									</li>
+									<li>
+										<a href="https://twitter.com/share" data-hashtags="forum-pfarrblatt" target="_blank"><i class="icon-twitter"></i> <span>twitter</span></a>
+										<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+									</li>
+								</ul>
+							</div>
+						</f:else>
+
+					</f:if>
+
+				</f:case>
+
+				<f:case value="2">
+					<f:if condition="{v:page.info(pageUid: recent.pid, field: 'starttime')} > {f:format.date(date: '' format: 'U')}">
+						<f:then>
+						</f:then>
+						<f:else>
+							<div class="detail-area">
+
+								<div class="image">
+									<v:page.link pageUid="{recent.uid}">
+										<f:image src="fileadmin/{recent.media_url}" width="380c" height="243c-80" crop="{recent.media_url.crop}"/>
+									</v:page.link>
+								</div>
+
+								<div class="box">
+									<div class="txt-box">
+										<time datetime="{f:format.date(date: recent.starttime, format: '%d.%m.%Y')}">Ausgabe {recent.header}</time>
+										<h2><v:page.link pageUid="{recent.uid}">{recent.title}</v:page.link></h2>
+										<f:format.crop maxCharacters="150">
+											<v:content.render column="1" pageUid="{recent.uid}" />
+										</f:format.crop>
+										<v:page.link pageUid="{recent.uid}">
+											<i class="icon-right"></i> <span>Weiterlesen</span>
+										</v:page.link>
+									</div>
+								</f:else>
+							</f:if>
+
+						</f:case>
+
+						<f:case value="3">
+							<f:if condition="{v:page.info(pageUid: recent.pid, field: 'starttime')} > {f:format.date(date: '' format: 'U')}">
+								<f:then>
+								</f:then>
+								<f:else>
+									<div class="txt-box">
+										<time datetime="{f:format.date(date: recent.starttime, format: '%d.%m.%Y')}">Ausgabe {recent.header}</time>
+										<h2><v:page.link pageUid="{recent.uid}">{recent.title}</v:page.link></h2>
+										<f:format.crop maxCharacters="150">
+											<v:content.render column="1" pageUid="{recent.uid}" />
+										</f:format.crop>
+										<v:page.link pageUid="{recent.uid}">
+											<i class="icon-right"></i> <span>Weiterlesen</span>
+										</v:page.link>
+									</div>
+								</div>
+							</div>
+						</f:else>
+					</f:if>
+				</f:case>
+
+
+				<f:case default="TRUE">
+					<f:comment>Nichts</f:comment>
+				</f:case>
+			</f:switch>
+
+		</f:for>
+
+		<f:for each="{menus}" as="menu" iteration="iterator"> 
+			<div class="ausgabenGesammelt">
+				<f:if condition="{menu.childcount}" >
+					<f:for each="{menu.childs}" as="volumes" iteration="ausgabe">
+						<f:if condition="{volumes.hidden} == 0">
+							<f:if condition="{volumes.childcount}" >
+
+
+									<li class="ausgabeContainer">
+										<time datetime="{f:format.date(date: volumes.starttime, format: '%d.%m.%Y')}">Ausgabe {volumes.title}/{volumes.year}</time>
+										<f:for each="{volumes.childs}" as="article">
+											<f:if condition="{v:page.info(pageUid: article.pid, field: 'starttime')} > {f:format.date(date: '' format: 'U')}">
+												<f:then>
+												</f:then>
+												<f:else>
+													<h2>
+														<v:page.link pageUid="{article.uid}">{article.title}</v:page.link>
+													</h2>
+												</f:else>
+											</f:if>
+										</f:for>
+
+									</li>
+
+							</f:if>
+						</f:if>
+					</f:for> 
+				</f:if>
+
+			</div>
+		</f:for>
+
+	</div>
+
+</div>
+
+</f:section>

@@ -1,0 +1,15 @@
+# cat=basic/enable/020; type=string; label= Article Pagetree Root Folder 
+rootFolderId = 0
+
+# cat=basic/enable/030; type=string; label= Top-Artikel Category Id
+topCategory = 0
+ 
+# cat=basic/enable/030; type=string; label= Magazin Category Id
+magazin = 0
+
+
+# cat=basic/enable/030; type=string; label= Facebook Url
+facebook = #
+
+# cat=basic/enable/030; type=string; label= Twitter Url
+twitter = #

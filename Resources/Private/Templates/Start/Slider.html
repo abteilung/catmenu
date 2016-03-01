@@ -1,0 +1,111 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	f:schemaLocation="https://fluidtypo3.org/schemas/fluid-master.xsd" 
+	xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+	flux:schemaLocation="https://fluidtypo3.org/schemas/flux-master.xsd"
+	xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	v:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd">
+</div>
+
+<f:layout name="defaultLayout" />
+
+
+<f:section name="content">
+
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+
+			<f:for each="{menus}" as="Item">
+				<f:for each="{Item.articles}" as="SubItem" iteration="iterator" >
+					<div class="item {f:if(condition: '{iterator.isFirst}', then: 'active', else: '')}">
+						<v:page.resources.fal table="pages" field="media" uid="{SubItem.uid}" as="images">
+							{images -> v:iterator.first() -> v:variable.set(name: 'image')}
+							<f:image src="{image.url}" alt="{image.alternative}{f:if(condition: image.description, then: ' {SubItem.title}', else: '')}" title="{SubItem.title}" class="img-responsive" crop="{image.crop}"/>
+						</v:page.resources.fal> 
+						<f:comment><a href="{SubItem.url}">{SubItem.title}</a></f:comment>
+					</div>
+				</f:for>
+			</f:for>
+
+		</div>
+		<!-- Indicators -->
+		<ol class="carousel-indicators ">
+
+			<f:for each="{menus}" as="Item" >
+				<f:for each="{Item.articles}" as="SubItem" iteration="iterator"  >
+
+					<li data-target="#carousel-example-generic" data-slide-to="{iterator.index}" class="same-height {f:if(condition: '{iterator.isFirst}', then: 'active', else: '')}">
+						<div class="holder">
+							<strong class="title">{SubItem.title}</strong>
+							<span class="subtitle">
+								<f:format.crop maxCharacters="180" respectWordBoundaries="true">
+									<v:content.render column="1" pageUid="{SubItem.uid}"/>
+								</f:format.crop>
+							</span>
+							<f:link.page pageUid="{SubItem.uid}" class="btn more" onclick="location.href='{f:uri.page(pageUid: SubItem.uid)}';">
+								Weiterlesen 
+							</f:link.page>
+						</div>
+					</li>
+
+				</f:for>
+			</f:for>
+
+			<li class="social">
+				<ul class="social-networks add">
+					<li><a href="javascript:window.print()"><i class="icon-print"></i> <span>print</span></a></li>
+
+					<li>
+						<a href="http://www.facebook.com/share.php?u='{f:uri.page(pageUid: page.pid)}'&title='{v:page.info(pageUid: page.uid, field: 'title')}'" target="_blank"><i class="icon-facebook-squared" ></i> <span>facebook</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="https://twitter.com/share" data-hashtags="forum-pfarrblatt"><i class="icon-twitter"></i> <span>twitter</span></a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				</li>
+			</ul>
+		</li>
+	</ol>
+	<!-- Controls -->
+	<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+		<span class="icon-left-open-big" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+		<span class="icon-right-open-big" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
+
+</f:section>
+
+
+
+<f:comment>
+
+
+
+	<li>
+
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+
+		<a href="#" data-href="{f:uri.page(pageUid: page.uid)}" 
+			><i class="icon-facebook-squared" ></i> <span>facebook</span>
+		</a>
+	</li>
+
+
+	http://www.facebook.com/share.php?u=[URL]&title=[TITLE]
+
+</f:comment>
+

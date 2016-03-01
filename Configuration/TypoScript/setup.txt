@@ -1,0 +1,8 @@
+plugin.tx_catmenu {
+   persistence {
+        storagePid = {$plugin.tx_catmenu.persistence.storagePid}
+    }
+    settings {
+        storagePid = {$plugin.tx_catmenu.persistence.storagePid}
+    }
+}

@@ -1,0 +1,8 @@
+plugin.tx_catmenu {
+   persistence {
+        storagePid = 0
+    }
+    settings {
+        storagePid = 0
+    }
+}

@@ -1,0 +1,26 @@
+<f:layout name="defaultLayout" />
+
+<f:section name="content">
+
+	<ul class="links list-inline">
+		<f:for each="{menus}" as="menu" iteration="iterator" >
+			<li>
+				<f:if condition="{iterator.cycle} == '1'">
+					<ul class="list-unstyled">
+						<li>
+						</f:if>
+						<h2>{menu.title}</h2>
+						<ul class="list-unstyled">
+							<f:for each="{menu.articles}" as="article">
+
+								<li><f:link.page pageUid="{article.uid}"><i class="icon-right"></i> <span class="txt">{article.title}</span></f:link.page></li>
+							</f:for>
+						</ul>
+					</li>
+					<f:if condition="{iterator.cycle} == '3'">
+					</ul></li><li><ul class="list-unstyled">
+				</f:if>
+			</f:for>
+		</ul>
+
+</f:section>
