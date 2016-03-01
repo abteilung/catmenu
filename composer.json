@@ -2,6 +2,6 @@
 	"name": "abteilung/catmenu",
 	"type": "typo3-cms-extension",
 	"description": "TYPO3 extension which handles menus of forum-pfarrblatt.ch",
-	"homepage": "https://gitlab.com/abteilung-deploy/forum-website-catmenu.git",
+	"homepage": "https://gitlab.com/abteilung-deploy/catmenu.git",
 	"license": ["GPL-2.0+"]
 }
