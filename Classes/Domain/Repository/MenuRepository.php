@@ -33,7 +33,7 @@ class MenuRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	function getCategories($parent = ''){
 
-		$sql = "SELECT * FROM 'sys_category' where parent in($parent) and deleted = 0 and hidden =0";
+		$sql = "SELECT * FROM `sys_category` where parent in($parent) and deleted = 0 and hidden =0";
 		$categories =array();
 		$res =  $GLOBALS['TYPO3_DB']->sql_query($sql);
 		while ($row =  $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {	
@@ -108,7 +108,7 @@ class MenuRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	function getRecentPageByCategory($pageid,$cat){	
 
 		$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer'); 
-		$sql = "SELECT * FROM 'pages' where pid = $pageid and deleted = 0 and hidden =0 order by sorting ASC";
+		$sql = "SELECT * FROM `pages` where pid = $pageid and deleted = 0 and hidden =0 order by sorting ASC";
 		$res =  $GLOBALS['TYPO3_DB']->sql_query($sql);
 		$years = array();
 		$articles = array();
@@ -120,7 +120,7 @@ class MenuRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		foreach ($years as $key => $year) {
 			
 			$pid = $year['uid']	;
-			$sql = "SELECT * FROM 'pages' where pid = $pid and deleted = 0 and hidden =0 order by sorting ASC limit 1 ";
+			$sql = "SELECT * FROM `pages` where pid = $pid and deleted = 0 and hidden =0 order by sorting ASC limit 1 ";
 			$res =  $GLOBALS['TYPO3_DB']->sql_query($sql);
 			$vols = array();
 			while ($row =  $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {	
@@ -163,9 +163,9 @@ class MenuRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	function getsubpages($pageid,$cat,$level=0)	{
 		$pages =array();
 		$time = time();
-		// $sql = "SELECT * FROM 'pages' where pid = $pageid order by title DESC";
+		// $sql = "SELECT * FROM `pages` where pid = $pageid order by title DESC";
 		// Revision by PW from Abteilung: Pages must be sorted by pagetree
-		$sql = "SELECT * FROM 'pages' where pid = $pageid order by sorting ASC";
+		$sql = "SELECT * FROM `pages` where pid = $pageid order by sorting ASC";
 		if($level >= 2)
 		{
 			if($cat == '') return array();
@@ -198,7 +198,7 @@ class MenuRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 
 	function pageMedia($pageid){
-		$sql = "SELECT sys_file_reference.uid,sys_file_reference.pid,sys_file.identifier FROM 'sys_file_reference' left join sys_file on sys_file.uid = sys_file_reference.uid_local where tablenames = 'pages' and fieldname = 'media' and sys_file_reference.pid =$pageid order by sorting_foreign asc ";
+		$sql = "SELECT sys_file_reference.uid,sys_file_reference.pid,sys_file.identifier FROM `sys_file_reference` left join sys_file on sys_file.uid = sys_file_reference.uid_local where tablenames = 'pages' and fieldname = 'media' and sys_file_reference.pid =$pageid order by sorting_foreign asc ";
 		$res =  $GLOBALS['TYPO3_DB']->sql_query($sql);
 		$row =  $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
 		return $row['identifier'];
