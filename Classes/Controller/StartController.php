@@ -1,12 +1,12 @@
 <?php
-namespace Typo3\Catmenu\Controller;
+namespace Pits\Catmenu\Controller;
 
 class StartController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 
 
 	/**
-	 * @var \Typo3\Catmenu\Domain\Repository\MenuRepository
+	 * @var \Pits\Catmenu\Domain\Repository\MenuRepository
 	 * @inject
 	 */
 	protected $menuRepository;

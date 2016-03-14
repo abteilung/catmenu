@@ -1,5 +1,5 @@
 <?php
-namespace Typo3\Catmenu\Domain\Model;
+namespace Pits\Catmenu\Domain\Model;
 
 
 class Start extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {

@@ -4,7 +4,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'Typo3.' . $_EXTKEY,
+    'Pits.' . $_EXTKEY,
     'Catmenu',
 	array(
 		'Start' => 'index,show,recent,single',
