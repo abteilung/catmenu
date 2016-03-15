@@ -1,12 +1,8 @@
 {
-    "name": "abteilung/catmenu",
-    "type": "typo3-cms-extension",
-    "description": "Category Menu for Forum-Pfarrblatt",
-    "homepage": "https://forum-pfarrblatt.ch",
-    "license": ["GPL-2.0+"],
-    "keywords": ["TYPO3 CMS"],
-    "support": {
-        "issues": "https://forge.typo3.org/projects/extension-foo"
-    },
+	"name": "abteilung/catmenu",
+	"type": "typo3-cms-extension",
+	"description": "TYPO3 extension for forum-pfarrblatt.ch",
+	"homepage": "https://github.com/abteilung/catmenu.git",
+	"license": ["GPL-2.0+"],
     "version": "1.0.0"
 }
